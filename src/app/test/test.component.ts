@@ -25,10 +25,23 @@ export class TestComponent implements OnInit {
   ngOnInit() {
   }
 onclick(a,b){
-  if(a==b)
-  {
-    this.router.navigate(['/login']);
-    console.log(a,b);
-  }
+  if(a==b && a.length==0 ){
+    alert("Please fill the required spaces");
+       }
+ 
+   else if (a.length==0) {
+     alert("please enter the Username");
+   }
+   else if (b.length==0) {
+     alert("please enter the password");
+   } 
+   else if
+  (a==b)
+    {
+      this.router.navigate(['/login']);
+     
+    }
+     
+  
 }
 }

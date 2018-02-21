@@ -1,5 +1,9 @@
+body  {
+  background-image: url("http://ilekh.com/wp-content/uploads/2014/04/students-giving-exam.png");
+  background-repeat: no-repeat;
+  background-size: auto;
+}
 
-/* Master Styles */
 h1 {
     color: #369; 
     font-family: Arial, Helvetica, sans-serif;   
