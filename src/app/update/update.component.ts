@@ -9,14 +9,16 @@ import { Router } from '@angular/router';
   <table *ngFor="let x of studetail" style="width:10%">
   <td>{{x.id}}</td>
   <td>{{x.name}}</td>
-  <td>{{x.age}}</td> <button (click)="func(x.id)">eidt</button>
+  <td>{{x.age}}</td> <button (click)="func(x.id)">edit</button>
 
   </table>
 <div *ngIf="showrslt">
 
-<label>id</label><input [(ngModel)]="a[0].id" type="number">
-<label>name</label><input  [(ngModel)]="a[0].name" type="text">
-<label>age</label><input [(ngModel)]="a[0].age" type="number">
+<label>id</label><input [(ngModel)]="editStudentDetail.id" type="number" readonly>
+<label>name</label><input  [(ngModel)]="editStudentDetail.name" type="text">
+<label>age</label><input [(ngModel)]="editStudentDetail.age" type="number">
+<button (click)="savedata(editStudentDetail)">Save</button>
+
 
 </div>
   `,
@@ -25,18 +27,37 @@ import { Router } from '@angular/router';
 export class UpdateComponent implements OnInit {
   showrslt=false
   public studetail=[]
-  public a;
-
+  public editStudentDetail;
+  public saveid;
+  
   constructor(private _studetailService: StudetailService) { }
 
   ngOnInit() {
     this.studetail=this._studetailService.getstudetail();
 
   }
+
 func(id){
   this.showrslt=true
-  this.a=(this.studetail.filter(studetail=> studetail.id==id))
+  let std = this.studetail.filter(std=> std.id==id)[0];
+  this.editStudentDetail = JSON.parse(JSON.stringify(std));
+}
+savedata(fetch){
+
+  
+  this.studetail.forEach(element=>{
+if(fetch.id===element.id)
+{
+  element.name=fetch.name;
+  element.age=fetch.age;
+
+}
+    
+  });
 
 }
 
+
 }
+
+
